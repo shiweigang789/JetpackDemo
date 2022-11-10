@@ -1,0 +1,24 @@
+apply plugin: 'groovy'
+apply plugin: 'maven-publish'
+repositories {
+    google()
+    mavenCentral()
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.swg.plugin'
+            artifactId = 'easeupload'
+            version = '1.0.0'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = '../repo'
+        }
+    }
+}
+
