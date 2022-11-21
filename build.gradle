@@ -3,8 +3,13 @@ buildscript {
     ext.kotlin_version = '1.7.0'
     repositories {
         maven {
+            allowInsecureProtocol = true
             url uri('repo')
         }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven {
             allowInsecureProtocol = true
             url 'http://maven.aliyun.com/nexus/content/groups/public/'
@@ -15,16 +20,22 @@ buildscript {
 
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.2.2'
+        classpath 'com.android.tools.build:gradle:7.1.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath 'com.swg.plugin:easeupload:1.0.0'
+//        classpath 'com.swg.plugin:easeupload:1.0.1'
+        classpath 'com.swg.plugin:double-click:1.0.3'
     }
 }
 allprojects {
     repositories {
         maven {
+            allowInsecureProtocol = true
             url uri('repo')
         }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
         maven {
             allowInsecureProtocol = true
             url 'http://maven.aliyun.com/nexus/content/groups/public/'

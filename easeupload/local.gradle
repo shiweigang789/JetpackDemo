@@ -10,7 +10,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.swg.plugin'
             artifactId = 'easeupload'
-            version = '1.0.0'
+            version = '1.0.1'
             from components.java
         }
     }

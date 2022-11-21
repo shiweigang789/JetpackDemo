@@ -1,0 +1,47 @@
+plugins {
+    id 'java-library'
+    id 'groovy'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+    implementation 'org.ow2.asm:asm:9.3'
+    implementation 'org.ow2.asm:asm-commons:9.3'
+    implementation 'com.android.tools.build:gradle:7.1.1'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDir("src/main/java")
+        }
+        groovy {
+            srcDir("src/main/groovy")
+        }
+    }
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.swg.plugin'
+            artifactId = 'double-click'
+            version = '1.0.3'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            // change to point to your repo, e.g. http://my.org/repo
+            url = '../repo'
+        }
+    }
+}
+
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+}

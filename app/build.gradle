@@ -4,14 +4,6 @@ plugins {
     id 'com.swg.plugin'
 }
 
-//apply plugin: 'com.swg.easeupload'
-
-apply {
-//    plugin<com.mi.plugin.doubleClick.ViewDoubleClickPlugin>()
-}
-
-//apply plugin:ViewDoubleClickPlugin
-
 android {
     compileSdk 32
 
