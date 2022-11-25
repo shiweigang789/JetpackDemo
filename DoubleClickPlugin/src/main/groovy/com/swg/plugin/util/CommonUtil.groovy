@@ -1,6 +1,7 @@
 package com.swg.plugin.util
 
-import org.gradle.internal.impldep.org.apache.commons.codec.digest.DigestUtils
+import org.apache.commons.codec.digest.DigestUtils
+
 
 class CommonUtil {
 

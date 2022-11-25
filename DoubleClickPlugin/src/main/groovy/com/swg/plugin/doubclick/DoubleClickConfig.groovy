@@ -1,8 +1,8 @@
-package com.swg.plugin
+package com.swg.plugin.doubclick
 
 import com.swg.plugin.util.CommonUtil
 
-class DoubleClickConfig{
+class DoubleClickConfig {
     public static String ViewDescriptor = "Landroid/view/View;"
 
     /**

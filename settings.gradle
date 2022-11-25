@@ -12,8 +12,10 @@
 //        mavenCentral()
 //    }
 //}
+
 rootProject.name = "JetpackDemo"
 include ':app'
 include ':camerax'
 include ':easeupload'
 include ':DoubleClickPlugin'
+include ':timeprint-plugin'

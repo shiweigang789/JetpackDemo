@@ -1,4 +1,6 @@
 plugins {
+    id 'kotlin'
+    id 'kotlin-kapt'
     id 'java-library'
     id 'groovy'
     id 'maven-publish'
@@ -7,9 +9,17 @@ plugins {
 dependencies {
     implementation gradleApi()
     implementation localGroovy()
+
     implementation 'org.ow2.asm:asm:9.3'
     implementation 'org.ow2.asm:asm-commons:9.3'
-    implementation 'com.android.tools.build:gradle:7.1.1'
+    implementation 'org.ow2.asm:asm-analysis:9.3'
+    implementation 'org.ow2.asm:asm-util:9.3'
+    implementation 'org.ow2.asm:asm-tree:9.3'
+
+    implementation 'com.android.tools.build:gradle:7.2.1'
+    implementation 'commons-codec:commons-codec:1.14'
+    implementation 'commons-io:commons-io:2.4'
+    implementation 'com.android.tools:common:26.6.4'
 }
 
 sourceSets {
@@ -20,6 +30,9 @@ sourceSets {
         groovy {
             srcDir("src/main/groovy")
         }
+        kotlin {
+            srcDir("src/main/kotlin")
+        }
     }
 }
 
@@ -28,9 +41,15 @@ publishing {
         maven(MavenPublication) {
             groupId = 'com.swg.plugin'
             artifactId = 'double-click'
-            version = '1.0.3'
+            version = '1.0.4'
             from components.java
         }
+//        maven(MavenPublication) {
+//            groupId = 'com.swg.timeplugin'
+//            artifactId = 'time-print'
+//            version = '1.0.0'
+//            from components.java
+//        }
     }
     repositories {
         maven {

@@ -1,0 +1,34 @@
+plugins {
+    id 'kotlin'
+    id 'kotlin-kapt'
+    id 'maven-publish'
+}
+
+dependencies {
+    implementation gradleApi()
+    implementation localGroovy()
+
+    implementation 'org.ow2.asm:asm:9.3'
+    implementation 'org.ow2.asm:asm-commons:9.3'
+    implementation 'org.ow2.asm:asm-analysis:9.3'
+    implementation 'org.ow2.asm:asm-util:9.3'
+    implementation 'org.ow2.asm:asm-tree:9.3'
+
+    implementation 'com.android.tools.build:gradle:7.2.2'
+}
+
+publishing {
+    publications {
+        mavenJava(MavenPublication) {
+            groupId = 'com.swg.timeprint'
+            artifactId = 'timeprint'
+            version = '1.0.1'
+            from components.java
+        }
+    }
+    repositories {
+        maven {
+            url = '../repo'
+        }
+    }
+}

@@ -1,8 +1,16 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'com.swg.plugin'
+//    id 'com.swg.plugin'
+    id 'timeprint'
 }
+
+//apply plugin:'com.swg.timeplugin'
+
+//double_click_config {
+//    checkAnnotation = 'AAAAAA'
+//    annotationName = "BBBBBBB"
+//}
 
 android {
     compileSdk 32
@@ -13,6 +21,8 @@ android {
         targetSdk 32
         versionCode 1
         versionName "1.0"
+
+        resConfigs "zh"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         externalNativeBuild {
@@ -44,6 +54,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+    ndkVersion '21.4.7075529'
 }
 
 dependencies {
