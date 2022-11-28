@@ -4,11 +4,13 @@ object DoubleClickUtils {
 
     private var sLastCLickTime: Long = 0
 
-    fun inDoubleClick(duration: Long): Boolean {
+    fun canClick(duration: Long = 500): Boolean {
         val now = System.currentTimeMillis()
-        val canClick = sLastCLickTime != 0L && now - sLastCLickTime <= duration
-        sLastCLickTime = now
-        return canClick
+        if (now - sLastCLickTime > duration) {
+            sLastCLickTime = now
+            return true
+        }
+        return false
     }
 
 }

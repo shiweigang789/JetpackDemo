@@ -3,7 +3,9 @@ package com.swg.timeprint
 import com.android.build.api.instrumentation.InstrumentationScope
 import com.android.build.api.variant.AndroidComponentsExtension
 import com.swg.timeprint.asm.ScanClassVisitorFactory
+import com.swg.timeprint.asm.TimeClassVisitorFactory
 import com.swg.timeprint.bean.ScanBean
+import com.swg.timeprint.bean.TimeBean
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.objectweb.asm.Opcodes
@@ -16,7 +18,7 @@ class TimePrint : Plugin<Project> {
             variant.transformClassesWith(
                 ScanClassVisitorFactory::class.java, InstrumentationScope.ALL
             ) {
-                it.ignoreOwner.set("com/example/fragment/library/common/utils/BuildUtils")
+                it.ignoreOwner.set("com/swg/jetpack/BuildUtils")
                 it.listOfScans.set(
                     listOf(
                         ScanBean(
@@ -24,7 +26,7 @@ class TimePrint : Plugin<Project> {
                             "BRAND",
                             "Ljava/lang/String;",
                             Opcodes.INVOKESTATIC,
-                            "com/example/fragment/library/common/utils/BuildUtils",
+                            "com/swg/jetpack/BuildUtils",
                             "getBrand",
                             "()Ljava/lang/String;"
                         ),
@@ -33,7 +35,7 @@ class TimePrint : Plugin<Project> {
                             "MODEL",
                             "Ljava/lang/String;",
                             Opcodes.INVOKESTATIC,
-                            "com/example/fragment/library/common/utils/BuildUtils",
+                            "com/swg/jetpack/BuildUtils",
                             "getModel",
                             "()Ljava/lang/String;"
                         ),
@@ -42,7 +44,7 @@ class TimePrint : Plugin<Project> {
                             "SERIAL",
                             "Ljava/lang/String;",
                             Opcodes.INVOKESTATIC,
-                            "com/example/fragment/library/common/utils/BuildUtils",
+                            "com/swg/jetpack/BuildUtils",
                             "getSerial",
                             "()Ljava/lang/String;"
                         ),
@@ -51,6 +53,23 @@ class TimePrint : Plugin<Project> {
                             "getSensorList",
                             "(I)Ljava/util/List;"
                         ),
+                    )
+                )
+            }
+            variant.transformClassesWith(
+                TimeClassVisitorFactory::class.java, InstrumentationScope.ALL
+            ) {
+                it.listOfTimes.set(
+                    listOf(
+                        TimeBean( //具体到方法名称
+                            "com/swg/jetpack/MainActivity",
+                            "onCreate",
+                            "(Landroid/os/Bundle;)V"
+                        ),
+                        TimeBean( //以包名和执行时间为条件
+                            "com/example/fragment/library/base",
+                            time = 50L
+                        )
                     )
                 )
             }

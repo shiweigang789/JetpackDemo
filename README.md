@@ -5,7 +5,11 @@
 
 [ASM tree api](https://juejin.cn/post/6844904118700474375)
 
+[ASM 教程](https://blog.csdn.net/ryo1060732496/article/details/103655505)
+
 
 ## Gradle相关
 
 [Gradle 插件架构实现原理剖析 — 上](https://juejin.cn/post/6844904142725447687)
+
+[Gradle的生命周期](https://juejin.cn/post/7170684769083555877?share_token=0a9900fe-b723-4c7c-96f9-4b1a5c591638)

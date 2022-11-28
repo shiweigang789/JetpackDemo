@@ -10,6 +10,7 @@ import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.objectweb.asm.ClassVisitor
 import org.objectweb.asm.Opcodes
+import org.objectweb.asm.tree.AbstractInsnNode
 import org.objectweb.asm.tree.ClassNode
 import org.objectweb.asm.tree.FieldInsnNode
 import org.objectweb.asm.tree.MethodInsnNode
@@ -42,35 +43,56 @@ class ScanClassNode(private val classVisitor: ClassVisitor, private val scans: L
 
     override fun visitEnd() {
         methods.forEach { methodNode ->
-            println("methodNode ----------------------------->")
-            println("methodNode ${methodNode.access}")
-            println("methodNode ${methodNode.name}")
-            println("methodNode ${methodNode.desc}")
-            println("methodNode ${methodNode.instructions}")
-            println("methodNode ${methodNode.signature}")
-            println("methodNode ${methodNode.exceptions}")
             val instructions = methodNode.instructions
             val iterator = instructions.iterator()
             while (iterator.hasNext()) {
                 val insnNode = iterator.next()
                 if (insnNode is FieldInsnNode) {
-                    println("insnNode FieldInsnNode")
-                    println("insnNode ${insnNode.name}")
-                    println("insnNode ${insnNode.desc}")
-                    println("insnNode ${insnNode.owner}")
-                    println("insnNode ${insnNode.opcode}")
+                    scans.find {
+                        it.owner == insnNode.owner && it.name == insnNode.name && it.desc == insnNode.desc
+                    }?.let {
+                        instructions.set(insnNode, newInsnNode(it))
+                        println(
+                            StringBuilder()
+                                .append(name).append(".").append(methodNode.name).append("->")
+                                .append(methodNode.desc).append(" \n")
+                                .append(insnNode.owner).append(".").append(insnNode.name)
+                                .append("->")
+                                .append(insnNode.desc).append(" \n").toString()
+                        )
+                    }
                 }
                 if (insnNode is MethodInsnNode) {
-                    println("insnNode MethodInsnNode")
-                    println("insnNode ${insnNode.name}")
-                    println("insnNode ${insnNode.desc}")
-                    println("insnNode ${insnNode.owner}")
-                    println("insnNode ${insnNode.opcode}")
+                    scans.find {
+                        it.owner == insnNode.owner && it.name == insnNode.name && it.desc == insnNode.desc
+                    }?.let {
+                        instructions.set(insnNode, newInsnNode(it))
+                        println(
+                            StringBuilder()
+                                .append(name).append(".").append(methodNode.name).append("->")
+                                .append(methodNode.desc).append(" \n")
+                                .append(insnNode.owner).append(".").append(insnNode.name)
+                                .append("->")
+                                .append(insnNode.desc).append(" \n").toString()
+                        )
+                    }
                 }
-
             }
         }
-        super.visitEnd()
         accept(classVisitor)
     }
+
+    private fun newInsnNode(bean: ScanBean): AbstractInsnNode {
+        val opcode = bean.replaceOpcode
+        val owner = bean.replaceOwner
+        val name = bean.replaceName
+        val descriptor = bean.replaceDesc
+        return if (!descriptor.startsWith("(")) {
+            FieldInsnNode(opcode, owner, name, descriptor)
+        } else {
+            MethodInsnNode(opcode, owner, name, descriptor)
+        }
+    }
+
+
 }

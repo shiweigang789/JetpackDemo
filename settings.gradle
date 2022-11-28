@@ -19,3 +19,79 @@ include ':camerax'
 include ':easeupload'
 include ':DoubleClickPlugin'
 include ':timeprint-plugin'
+
+println "---Gradle：开始初始化了"
+gradle.settingsEvaluated {
+    println "---Gradle：settingsEvaluated Settings对象评估完毕"
+}
+
+gradle.projectsLoaded {
+    println "---Gradle：projectsLoaded 准备加载Project对象了"
+}
+
+gradle.allprojects { project ->
+    beforeEvaluate {
+        println "---Gradle：Projec beforeEvaluate Project开始评估，对象是 = " + project.name
+    }
+    afterEvaluate {
+        println "---Gradle：Projec afterEvaluate Project评估完毕，对象是 = " + project.name
+    }
+}
+
+gradle.projectsEvaluated {
+    println "---Gradle：projectsEvaluated 所有Project对象评估完毕"
+}
+
+gradle.buildFinished {
+    println "---Gradle：buildFinished 构建结束了"
+}
+
+gradle.addBuildListener(new BuildListener() {
+
+    @Override
+    void beforeSettings(Settings settings) {
+        println "BuildListener beforeSettings"
+    }
+
+    @Override
+    void settingsEvaluated(Settings settings) {
+        println "BuildListener settingsEvaluated"
+    }
+
+    @Override
+    void projectsLoaded(Gradle gradle) {
+        println "BuildListener projectsLoaded"
+    }
+
+    @Override
+    void projectsEvaluated(Gradle gradle) {
+        println "BuildListener projectsEvaluated"
+    }
+
+    @Override
+    void buildFinished(BuildResult buildResult) {
+        println "BuildListener buildFinished"
+    }
+})
+
+//gradle.addListener(new BuildListener() {
+//    @Override
+//    void settingsEvaluated(Settings settings) {
+//
+//    }
+//
+//    @Override
+//    void projectsLoaded(Gradle gradle) {
+//
+//    }
+//
+//    @Override
+//    void projectsEvaluated(Gradle gradle) {
+//
+//    }
+//
+//    @Override
+//    void buildFinished(BuildResult buildResult) {
+//
+//    }
+//})
