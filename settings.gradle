@@ -95,3 +95,4 @@ gradle.addBuildListener(new BuildListener() {
 //
 //    }
 //})
+include ':compose'
