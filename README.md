@@ -22,3 +22,5 @@
 ## 工具库
 
 [公用组件库](https://github.com/yangchong211/YCAppTool)
+
+[android高仿微信聊天消息列表自由复制文字，双击查看文本内容](https://juejin.cn/post/7008080194116255752)
