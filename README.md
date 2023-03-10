@@ -28,3 +28,5 @@
 ## 调试
 
 [调试实战与原理详解](https://mp.weixin.qq.com/s/8q_jXqqKLGuZFMDPAYRc8A)
+
+[Android遇到的问题，解决方法和一些小技巧](https://blog.csdn.net/u013290250/article/details/54092459)
