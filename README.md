@@ -25,6 +25,8 @@
 
 [android高仿微信聊天消息列表自由复制文字，双击查看文本内容](https://juejin.cn/post/7008080194116255752)
 
+[相册](https://github.com/BillyWei01/EasyAlbum)
+
 ## 调试
 
 [调试实战与原理详解](https://mp.weixin.qq.com/s/8q_jXqqKLGuZFMDPAYRc8A)
